@@ -1,0 +1,408 @@
+SWAGGER UI output page
+
+VoxLoom Backend Challenge
+ 0.1.0 
+OAS 3.1
+/openapi.json
+
+Authorize
+default
+
+
+GET
+/
+Root
+
+
+POST
+/api/v1/sessions
+Create Session
+
+
+Parameters
+Cancel
+Reset
+No parameters
+
+Request body
+
+application/json
+Edit Value
+Schema
+{
+"customer_id":"cust_23",
+"language":"hi|en|ta|ml",
+"channel":"phone|whatsapp",
+"persona":"billing_agent" 
+}
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/api/v1/sessions' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer demo123' \
+  -H 'Content-Type: application/json' \
+  -d '{
+"customer_id":"cust_23",
+"language":"hi|en|ta|ml",
+"channel":"phone|whatsapp",
+"persona":"billing_agent" 
+}'
+Request URL
+http://127.0.0.1:8000/api/v1/sessions
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "session_id": "76ed62dc-0c16-4dc4-9337-5c05ba68af0d",
+  "created_at": "2025-12-06T07:05:53.676349"
+}
+Response headers
+ content-length: 95 
+ content-type: application/json 
+ date: Sat,06 Dec 2025 07:05:53 GMT 
+ server: uvicorn 
+Responses
+Code	Description	Links
+200	
+Successful Response
+
+Media type
+
+application/json
+Controls Accept header.
+Example Value
+Schema
+"string"
+No links
+422	
+Validation Error
+
+Media type
+
+application/json
+Example Value
+Schema
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+No links
+
+POST
+/audio-message
+Audio Message
+
+
+POST
+/api/v1/sessions/{session_id}/messages
+Post Message
+
+Parameters
+Cancel
+Reset
+Name	Description
+session_id *
+string
+(path)
+76ed62dc-0c16-4dc4-9337-5c05ba68af0d
+Request body
+
+application/json
+Edit Value
+Schema
+{
+  "type": "audio",
+  "text": "hello",
+  "audio_file": "hi-413164.mp3",
+  "mime": "audio/mp3"
+}
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/api/v1/sessions/76ed62dc-0c16-4dc4-9337-5c05ba68af0d/messages' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "type": "audio",
+  "text": "hello",
+  "audio_file": "hi-413164.mp3",
+  "mime": "audio/mp3"
+}'
+Request URL
+http://127.0.0.1:8000/api/v1/sessions/76ed62dc-0c16-4dc4-9337-5c05ba68af0d/messages
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "id": "2de62327-e785-474f-92e5-18d0d87c916a",
+  "session_id": "76ed62dc-0c16-4dc4-9337-5c05ba68af0d",
+  "incoming_audio": "hi-413164.mp3",
+  "user_text": "Hi.",
+  "agent_text": "LLM reply to: Hi.",
+  "agent_audio_base64": "TExNIHJlcGx5IHRvOiBIaS4=",
+  "timestamp": "2025-12-06T07:10:46.168279"
+}
+Response headers
+ content-length: 270 
+ content-type: application/json 
+ date: Sat,06 Dec 2025 07:10:32 GMT 
+ server: uvicorn 
+Responses
+Code	Description	Links
+200	
+Successful Response
+
+Media type
+
+application/json
+Controls Accept header.
+Example Value
+Schema
+"string"
+No links
+422	
+Validation Error
+
+Media type
+
+application/json
+Example Value
+Schema
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+No links
+
+GET
+/api/v1/sessions/{session_id}/conversation
+Get Conversation
+
+
+Parameters
+Cancel
+Name	Description
+session_id *
+string
+(path)
+76ed62dc-0c16-4dc4-9337-5c05ba68af0d
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'http://127.0.0.1:8000/api/v1/sessions/76ed62dc-0c16-4dc4-9337-5c05ba68af0d/conversation' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer demo123'
+Request URL
+http://127.0.0.1:8000/api/v1/sessions/76ed62dc-0c16-4dc4-9337-5c05ba68af0d/conversation
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "session_id": "76ed62dc-0c16-4dc4-9337-5c05ba68af0d",
+  "messages": [
+    {
+      "id": "2de62327-e785-474f-92e5-18d0d87c916a",
+      "session_id": "76ed62dc-0c16-4dc4-9337-5c05ba68af0d",
+      "incoming_audio": "hi-413164.mp3",
+      "user_text": "Hi.",
+      "agent_text": "LLM reply to: Hi.",
+      "agent_audio_base64": "TExNIHJlcGx5IHRvOiBIaS4=",
+      "timestamp": "2025-12-06T07:10:46.168279"
+    }
+  ]
+}
+Response headers
+ content-length: 337 
+ content-type: application/json 
+ date: Sat,06 Dec 2025 07:11:10 GMT 
+ server: uvicorn 
+Responses
+Code	Description	Links
+200	
+Successful Response
+
+Media type
+
+application/json
+Controls Accept header.
+Example Value
+Schema
+"string"
+No links
+422	
+Validation Error
+
+Media type
+
+application/json
+Example Value
+Schema
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+
+
+POST
+/api/v1/tools/mcp
+Mcp Tool
+
+
+Parameters
+Cancel
+Reset
+No parameters
+
+Request body
+
+application/json
+Edit Value
+Schema
+{
+"session_id":"...",
+"customer_id":"cust_123",
+"llm_response":"We will refund you within 3-5 business days",
+"scenario":"billing_query",
+"crm_record":{
+"name":"Asha Sharma",
+"phone":"+91-98xxxxxxx",
+"account_id":"acc_3321",
+"query":"High bill for Oct",
+"intent":"request_refund",
+"priority":"high"
+},
+"meta":{"model":"flan-t5-small","confidence":0.83}}
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/api/v1/tools/mcp' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer demo123' \
+  -H 'Content-Type: application/json' \
+  -d '{
+"session_id":"...",
+"customer_id":"cust_123",
+"llm_response":"We will refund you within 3-5 business days",
+"scenario":"billing_query",
+"crm_record":{
+"name":"Asha Sharma",
+"phone":"+91-98xxxxxxx",
+"account_id":"acc_3321",
+"query":"High bill for Oct",
+"intent":"request_refund",
+"priority":"high"
+},
+"meta":{"model":"flan-t5-small","confidence":0.83}}'
+Request URL
+http://127.0.0.1:8000/api/v1/tools/mcp
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "session_id": "...",
+  "customer_id": "cust_123",
+  "llm_response": "We will refund you within 3-5 business days",
+  "scenario": "billing_query",
+  "crm_record": {
+    "name": "Asha Sharma",
+    "phone": "+91-98xxxxxxx",
+    "account_id": "acc_3321",
+    "query": "High bill for Oct",
+    "intent": "request_refund",
+    "priority": "high"
+  },
+  "meta": {
+    "model": "flan-t5-small",
+    "confidence": 0.83
+  },
+  "status": "pending",
+  "created_at": "2025-12-06T12:55:52.850093"
+}
+Response headers
+ content-length: 401 
+ content-type: application/json 
+ date: Sat,06 Dec 2025 12:55:52 GMT 
+ server: uvicorn 
+Responses
+Code	Description	Links
+200	
+Successful Response
+
+Media type
+
+application/json
+Controls Accept header.
+Example Value
+Schema
+"string"
+No links
+422	
+Validation Error
+
+Media type
+
+application/json
+Example Value
+Schema
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string"
+    }
+  ]
+}
+
+
+
+ValidationErrorExpand allobject
+Explain
