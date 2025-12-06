@@ -1,0 +1,145 @@
+{
+  "info": {
+    "name": "VoxLoom Backend Challenge",
+    "_postman_id": "a2c4fb5e-8921-4b3d-8a0e-voxlm123456",
+    "description": "Postman Collection for VoxLoom Backend APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Session",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer demo123"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/sessions",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["api", "v1", "sessions"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_id\": \"cust101\",\n  \"language\": \"en\",\n  \"channel\": \"phone\",\n  \"persona\": \"default\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Upload Audio (mp3)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ["demo/hi-413164.mp3"]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/audio-message",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["audio-message"]
+        }
+      }
+    },
+
+    {
+      "name": "Send Text Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer demo123" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/sessions/{{session_id}}/messages",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["api", "v1", "sessions", "{{session_id}}", "messages"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"text\",\n  \"text\": \"hello agent\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Send Audio Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer demo123" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/sessions/{{session_id}}/messages",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["api", "v1", "sessions", "{{session_id}}", "messages"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"audio\",\n  \"audio_file\": \"hi-413164.mp3\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Get Conversation",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer demo123" }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/sessions/{{session_id}}/conversation",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["api", "v1", "sessions", "{{session_id}}", "conversation"]
+        }
+      }
+    },
+
+    {
+      "name": "Trigger MCP Tool",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer demo123" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/tools/mcp",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["api", "v1", "tools", "mcp"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"customer_id\": \"cust101\",\n  \"llm_reply\": \"hello\",\n  \"scenario\": \"conversation_turn\"\n}"
+        }
+      }
+    }
+  ]
+}
