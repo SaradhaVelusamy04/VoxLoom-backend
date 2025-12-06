@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+asyncpg               # PostgreSQL async driver
+python-dotenv
+pydantic[email]       # For validation
+pyttsx3               # TTS
+whisper               # Open-source ASR
+requests              # For HTTP calls if needed
+pydub
+python-multipart    # For handling file uploads
